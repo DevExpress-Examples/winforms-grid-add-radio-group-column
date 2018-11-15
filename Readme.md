@@ -1,3 +1,10 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Form1.cs](./CS/Form1.cs) (VB: [Form1.vb](./VB/Form1.vb))
+* [GridRadioGroupColumnHelper.cs](./CS/Helper/GridRadioGroupColumnHelper.cs) (VB: [GridRadioGroupColumnHelper.vb](./VB/Helper/GridRadioGroupColumnHelper.vb))
+* [Program.cs](./CS/Program.cs) (VB: [Program.vb](./VB/Program.vb))
+<!-- default file list end -->
 # How to add a column that behaves like a radio group
 
 
