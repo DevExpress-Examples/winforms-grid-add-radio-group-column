@@ -55,7 +55,8 @@ Namespace WindowsApplication1
 		End Property
 
 		Private Sub SetRowChecked(ByVal dataSourceRowIndex As Integer, ByVal value As Boolean)
-			_GridView.SetRowCellValue(_GridView.GetDataSourceRowIndex(dataSourceRowIndex), RadioGroupColumn, value)
+			Dim rowHandle As Integer = _GridView.GetRowHandle(dataSourceRowIndex)
+			_GridView.SetRowCellValue(rowHandle, RadioGroupColumn, value)
 		End Sub
 		Public Sub New(ByVal gridView As GridView)
 			_GridView = gridView
@@ -93,6 +94,7 @@ Namespace WindowsApplication1
 		Private Sub InitRepositoryItem()
 			RadioRepositoryItem.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio
 			AddHandler RadioRepositoryItem.EditValueChanged, AddressOf RadioRepositoryItem_EditValueChanged
+			_GridView.GridControl.RepositoryItems.Add(RadioRepositoryItem)
 		End Sub
 
 
@@ -106,5 +108,13 @@ Namespace WindowsApplication1
 		Protected Overridable Sub RaiseSelectedRowChanged()
 			RaiseEvent SelectedRowChanged(_GridView, EventArgs.Empty)
 		End Sub
+
+		Public Sub Disable()
+			RemoveHandler RadioRepositoryItem.EditValueChanged, AddressOf RadioRepositoryItem_EditValueChanged
+			RemoveHandler _GridView.CustomUnboundColumnData, AddressOf _GridView_CustomUnboundColumnData
+			_GridView = Nothing
+			RadioRepositoryItem = Nothing
+		End Sub
+
 	End Class
 End Namespace

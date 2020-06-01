@@ -36,6 +36,11 @@ Namespace WindowsApplication1
 			Text = _Helper.SelectedDataSourceRowIndex.ToString()
 		End Sub
 
-
+		Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
+			MyBase.OnFormClosing(e)
+			RemoveHandler _Helper.SelectedRowChanged, AddressOf _Helper_SelectedRowChanged
+			_Helper.Disable()
+			_Helper = Nothing
+		End Sub
 	End Class
 End Namespace
