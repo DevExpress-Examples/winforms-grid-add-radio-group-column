@@ -1,5 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Data
@@ -70,7 +69,7 @@ Namespace WindowsApplication1
 		End Sub
 
 		Private Sub _GridView_CustomUnboundColumnData(ByVal sender As Object, ByVal e As CustomColumnDataEventArgs)
-			If e.Column Is RadioGroupColumn Then
+			If e.Column = RadioGroupColumn Then
 				If e.IsGetData Then
 					e.Value = e.ListSourceRowIndex = SelectedDataSourceRowIndex
 				End If

@@ -1,5 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.Data
@@ -10,6 +9,7 @@ Imports System.Windows.Forms
 Namespace WindowsApplication1
 	Partial Public Class Form1
 		Inherits Form
+
 				Private Function CreateTable(ByVal RowCount As Integer) As DataTable
 			Dim tbl As New DataTable()
 			tbl.Columns.Add("Name", GetType(String))
