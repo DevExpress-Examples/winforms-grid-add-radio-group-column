@@ -52,7 +52,8 @@ namespace WindowsApplication1
 
         private void SetRowChecked(int dataSourceRowIndex, bool value)
         {
-            _GridView.SetRowCellValue(_GridView.GetDataSourceRowIndex(dataSourceRowIndex), RadioGroupColumn, value);
+            int rowHandle = _GridView.GetRowHandle(dataSourceRowIndex);
+            _GridView.SetRowCellValue(rowHandle, RadioGroupColumn, value);
         }
         public GridRadioGroupColumnHelper(GridView gridView)
         {
@@ -92,7 +93,8 @@ namespace WindowsApplication1
         private void InitRepositoryItem()
         {
             RadioRepositoryItem.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Radio;
-            RadioRepositoryItem.EditValueChanged += new EventHandler(RadioRepositoryItem_EditValueChanged);
+            RadioRepositoryItem.EditValueChanged += RadioRepositoryItem_EditValueChanged;
+            _GridView.GridControl.RepositoryItems.Add(RadioRepositoryItem);
         }
 
 
@@ -109,6 +111,12 @@ namespace WindowsApplication1
         {
             if (SelectedRowChanged != null)
                 SelectedRowChanged(_GridView, EventArgs.Empty);
+        }
+        public void Disable() {
+            RadioRepositoryItem.EditValueChanged -= RadioRepositoryItem_EditValueChanged;
+            _GridView.CustomUnboundColumnData -= _GridView_CustomUnboundColumnData;
+            _GridView = null;
+            RadioRepositoryItem = null;
         }
     }
 }
